@@ -19,8 +19,14 @@
       #top {
         font-size: 0.24rem;
         text-align: center;
+        color: blue;
+        padding: 0.1rem;
+      }
+      #middle {
+        font-size: 0.28rem;
+        text-align: center;
         color: red;
-        padding: 0.2rem;
+        padding: 0.1rem;
       }
       #bottom {
         width: 6rem;
@@ -65,11 +71,12 @@
   </head>
   <body>
     <div id="container">
-      <div id="top"></div>
+      <div id="top">现在是北京时间: 2019年6月7号 | 下午5时8分34秒 | 星期五</div>
+      <div id="middle">留给兄弟们学习时间不多了!</div>
       <div id="bottom">
-        <div id="hou"></div>
-        <div id="min"></div>
-        <div id="sec"></div>
+        <div id="hou" style="transform: rotate(150deg);"></div>
+        <div id="min" style="transform: rotate(36deg);"></div>
+        <div id="sec" style="transform: rotate(204deg);"></div>
       </div>
     </div>
     <script type="text/javascript">
@@ -79,6 +86,7 @@
         var minNode = document.getElementById('min');
         var secNode = document.getElementById('sec');
         var topNode = document.getElementById('top');
+        var middleNode = document.getElementById('middle');
         //2.开启定时器
         setInterval(function() {
           //2.1获取时间
@@ -88,7 +96,7 @@
           var m = date.getMonth() + 1;
           var d = date.getDate();
           var w = date.getDay();
-          var ws = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期伍', '星期六'];
+          var ws = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
           //2.3求出毫秒, 秒, 分钟, 小时
           var ms = date.getMilliseconds();
           var s = parseInt(date.getSeconds() + ms / 1000);
@@ -96,11 +104,14 @@
           var h = parseInt((date.getHours() % 12) + m / 60);
 
           if (date.getHours() >= 13) {
-            topNode.innerText = `现在时间是: ${y}年${m}月${d}号 | 下午${h}时${min}分${s}秒 | ${ws[w]}`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 下午${h}时${min}分${s}秒 | ${ws[w]}`;
+            middleNode.innerText = '留给兄弟们学习时间不多了!';
           } else if (date.getHours() === 12) {
-            topNode.innerText = `现在时间是: ${y}年${m}月${d}号 | 中午${h}时${min}分${s}秒 | ${ws[w]}`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 中午${h}时${min}分${s}秒 | ${ws[w]}`;
+            middleNode.innerText = '留给兄弟们学习时间不多了!';
           } else {
-            topNode.innerText = `现在时间是: ${y}年${m}月${d}号 | 上午${h}时${min}分${s}秒 | ${ws[w]}`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 上午${h}时${min}分${s}秒 | ${ws[w]}`;
+            middleNode.innerText = '留给兄弟们学习时间不多了!';
           }
           //3.选择
           secNode.style.transform = 'rotate(' + s * 6 + 'deg)';
