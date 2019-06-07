@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>时钟案例</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edg,chrome=1" />
+    <link rel="shortcut icon" href="https://www.jianshu.com/favicon.ico" type="img/x-icon" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <style>
+      #container {
+        padding: 0.2rem 0.15rem;
+        background-color: #fff;
+      }
+      #top {
+        font-size: 0.24rem;
+        text-align: center;
+        color: red;
+        padding: 0.2rem;
+      }
+      #bottom {
+        width: 6rem;
+        height: 6rem;
+        margin: 0 auto;
+        background-image: url('./img/clock.jpg');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: 100% 100%;
+        /* 定位 */
+        position: relative;
+      }
+      #hou,
+      #min,
+      #sec {
+        width: 0.3rem;
+        height: 6rem;
+        position: absolute;
+        left: 3rem;
+        top: 0;
+        margin-left: -0.15rem;
+      }
+      #hou {
+        background-image: url('./img/hour.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: 100% 100%;
+      }
+      #min {
+        background-image: url('./img/minute.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: 100% 100%;
+      }
+      #sec {
+        background-image: url('./img/second.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: 100% 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="top"></div>
+      <div id="bottom">
+        <div id="hou"></div>
+        <div id="min"></div>
+        <div id="sec"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      window.onload = function() {
+        //1.获取所需的节点
+        var houNode = document.getElementById('hou');
+        var minNode = document.getElementById('min');
+        var secNode = document.getElementById('sec');
+        var topNode = document.getElementById('top');
+        //2.开启定时器
+        setInterval(function() {
+          //2.1获取时间
+          var date = new Date();
+          //2.2求出年, 月, 日, 周
+          var y = date.getFullYear();
+          var m = date.getMonth() + 1;
+          var d = date.getDate();
+          var w = date.getDay();
+          var ws = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期伍', '星期六'];
+          //2.3求出毫秒, 秒, 分钟, 小时
+          var ms = date.getMilliseconds();
+          var s = parseInt(date.getSeconds() + ms / 1000);
+          var min = parseInt(date.getMinutes() + s / 60);
+          var h = parseInt((date.getHours() % 12) + m / 60);
+
+          if (date.getHours() >= 13) {
+            topNode.innerText = `现在时间是: ${y}年${m}月${d}号 | 下午${h}时${min}分${s}秒 | ${ws[w]}`;
+          } else if (date.getHours() === 12) {
+            topNode.innerText = `现在时间是: ${y}年${m}月${d}号 | 中午${h}时${min}分${s}秒 | ${ws[w]}`;
+          } else {
+            topNode.innerText = `现在时间是: ${y}年${m}月${d}号 | 上午${h}时${min}分${s}秒 | ${ws[w]}`;
+          }
+          //3.选择
+          secNode.style.transform = 'rotate(' + s * 6 + 'deg)';
+          minNode.style.transform = 'rotate(' + m * 6 + 'deg)';
+          houNode.style.transform = 'rotate(' + h * 30 + 'deg)';
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>
