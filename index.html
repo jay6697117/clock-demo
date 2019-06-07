@@ -74,21 +74,25 @@
       <div id="top">现在是北京时间: 2019年6月7号 | 下午5时8分34秒 | 星期五</div>
       <div id="middle">留给兄弟们学习时间不多了!</div>
       <div id="bottom">
-        <div id="hou" style="transform: rotate(150deg);"></div>
-        <div id="min" style="transform: rotate(36deg);"></div>
-        <div id="sec" style="transform: rotate(204deg);"></div>
+        <div id="hou"></div>
+        <div id="min"></div>
+        <div id="sec"></div>
       </div>
     </div>
     <script type="text/javascript">
       window.onload = function() {
-        //1.获取所需的节点
+        //0.获取所需的节点
         var houNode = document.getElementById('hou');
         var minNode = document.getElementById('min');
         var secNode = document.getElementById('sec');
         var topNode = document.getElementById('top');
         var middleNode = document.getElementById('middle');
+        //1.init初始化始终时间
+        clockFn();
         //2.开启定时器
-        setInterval(function() {
+        setInterval(clockFn, 1000);
+
+        function clockFn() {
           //2.1获取时间
           var date = new Date();
           //2.2求出年, 月, 日, 周
@@ -123,7 +127,7 @@
           secNode.style.transform = 'rotate(' + s * 6 + 'deg)';
           minNode.style.transform = 'rotate(' + min * 6 + 'deg)';
           houNode.style.transform = 'rotate(' + h * 30 + 'deg)';
-        }, 1000);
+        }
       };
     </script>
   </body>
