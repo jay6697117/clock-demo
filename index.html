@@ -99,18 +99,24 @@
           var ws = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
           //2.3求出毫秒, 秒, 分钟, 小时
           var ms = date.getMilliseconds();
-          var s = parseInt(date.getSeconds() + ms / 1000);
-          var min = parseInt(date.getMinutes() + s / 60);
-          var h = parseInt((date.getHours() % 12) + m / 60);
+          var s = date.getSeconds() + parseInt(ms / 1000); //ms / 1000 需设置为整数 保证s为整数
+          var min = date.getMinutes() + s / 60;
+          var h = (date.getHours() % 12) + min / 60;
 
           if (date.getHours() >= 13) {
-            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 下午${h}时${min}分${s}秒 | ${ws[w]}`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 下午${parseInt(h)}时${parseInt(min)}分${s}秒 | ${
+              ws[w]
+            }`;
             middleNode.innerText = '留给兄弟们学习时间不多了!';
           } else if (date.getHours() === 12) {
-            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 中午${h}时${min}分${s}秒 | ${ws[w]}`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 中午${parseInt(h)}时${parseInt(min)}分${s}秒 | ${
+              ws[w]
+            }`;
             middleNode.innerText = '留给兄弟们学习时间不多了!';
           } else {
-            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 上午${h}时${min}分${s}秒 | ${ws[w]}`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 上午${parseInt(h)}时${parseInt(min)}分${s}秒 | ${
+              ws[w]
+            }`;
             middleNode.innerText = '留给兄弟们学习时间不多了!';
           }
           //3.选择
