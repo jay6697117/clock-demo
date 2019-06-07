@@ -108,25 +108,33 @@
           var h = (date.getHours() % 12) + min / 60;
 
           if (date.getHours() >= 13) {
-            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 下午${parseInt(h)}时${parseInt(min)}分${s}秒 | ${
-              ws[w]
-            }`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 下午${parseInt(h)}时${parseInt(
+              min
+            )}分${transformSize(s)}秒 | ${ws[w]}`;
             middleNode.innerText = '留给兄弟们学习时间不多了!';
           } else if (date.getHours() === 12) {
-            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 中午${parseInt(h)}时${parseInt(min)}分${s}秒 | ${
-              ws[w]
-            }`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 中午${parseInt(h)}时${parseInt(
+              min
+            )}分${transformSize(s)}秒 | ${ws[w]}`;
             middleNode.innerText = '留给兄弟们学习时间不多了!';
           } else {
-            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 上午${parseInt(h)}时${parseInt(min)}分${s}秒 | ${
-              ws[w]
-            }`;
+            topNode.innerText = `现在是北京时间: ${y}年${m}月${d}号 | 上午${parseInt(h)}时${parseInt(
+              min
+            )}分${transformSize(s)}秒 | ${ws[w]}`;
             middleNode.innerText = '留给兄弟们学习时间不多了!';
           }
           //3.选择
           secNode.style.transform = 'rotate(' + s * 6 + 'deg)';
           minNode.style.transform = 'rotate(' + min * 6 + 'deg)';
           houNode.style.transform = 'rotate(' + h * 30 + 'deg)';
+        }
+
+        function transformSize(num) {
+          if (num >= 10) {
+            return String(num);
+          } else {
+            return String('0' + num);
+          }
         }
       };
     </script>
